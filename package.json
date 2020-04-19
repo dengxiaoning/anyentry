@@ -1,0 +1,38 @@
+{
+  "name": "anyentry",
+  "version": "1.0.0",
+  "description": "tiny nodejs web server",
+  "main": "build/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
+  },
+  "pre-commit": [
+    "fix",
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dengxiaoning/anyentry.git"
+  },
+  "keywords": [
+    "static"
+  ],
+  "author": "dex",
+  "email": "d1236688@163.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dengxiaoning/anyentry/issues"
+  },
+  "homepage": "https://github.com/dengxiaoning/anyentry#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "curl": "^0.1.4",
+    "eslint": "^6.8.0",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "handlebars": "^4.7.6"
+  }
+}

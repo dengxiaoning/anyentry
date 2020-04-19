@@ -1,2 +1,12 @@
 # anyentry
 Tiny NodeJS Static Web server
+
+### FEATURES
+
+EDITORCONFIG
+HANDLEBARS
+ESLINT
+COMPRESS
+RANGE
+CURL LOCATION TEST
+Cache
