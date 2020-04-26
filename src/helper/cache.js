@@ -29,9 +29,6 @@ module.exports = function isFresh(stats,req,res){
     return false;
   }
 
-  if(lastModified && lastModified !== res.getHeader('ETag')){
-    return false;
-  }
 
   if(lastModified && lastModified !== res.getHeader('Last-Modified')){
     return false;

@@ -6,7 +6,6 @@ const Handlebars = require('handlebars');
 const promisify = require('util').promisify;
 const stat = promisify(fs.stat);
 const readdir = promisify(fs.readdir);
-const config = require('../config/defaultConfig');
 // add content-type
 const mime = require('./mime');
 // add compress
@@ -19,10 +18,11 @@ const tplPath = path.join(__dirname, '../template/dir.tpl');
 const source = fs.readFileSync(tplPath);
 const template = Handlebars.compile(source.toString())
 
-module.exports = async function (req, res, filePath) {
+module.exports = async function (req, res, filePath,config,assetsCacheChild) {
   try {
+    let readFileDecodeUrl = decodeURIComponent(filePath);
     // Set it is sync reqest
-    const stats = await stat(filePath);
+    const stats = await stat(readFileDecodeUrl);
     if (stats.isFile()) {
       const contentType = mime(filePath);
 
@@ -38,10 +38,10 @@ module.exports = async function (req, res, filePath) {
       if(code === 200){
         res.statusCode = 200;
         // crate read stream here.
-        rs = fs.createReadStream(filePath);
+        rs = fs.createReadStream(readFileDecodeUrl);
       }else{
         res.statusCode = 206;
-        rs = fs.createReadStream(filePath,{start,end});
+        rs = fs.createReadStream(readFileDecodeUrl,{start,end});
       }
       // 压缩（before compress is 532b, after compress is 417b on browser in test）
       if (filePath.match(config.compress)) {
@@ -50,28 +50,30 @@ module.exports = async function (req, res, filePath) {
       rs.pipe(res);
     } else if (stats.isDirectory()) {
       // read folder from filepath
-      const files = await readdir(filePath);
+      const files = await readdir(readFileDecodeUrl);
       res.statusCode = 200;
       res.setHeader('Content-Type', 'text/html');
       const dir = path.relative(config.root, filePath);
-
       const data = {
         title: path.basename(filePath),
         dir: dir ? `/${dir}` : '',
-        files: files.map(file => {
+        files: files.map(function(file){
           // convert it to absolute path
           let eachUrl = path.join(filePath, file);
-          let eachStat = fs.lstatSync(eachUrl);
-          let iconUrl;
+          let eachStat = fs.lstatSync(decodeURIComponent(eachUrl));
+          let iconUrl,absUrl,fsType;
           if (eachStat.isDirectory()) { // If it's folder
-            iconUrl = path.relative(config.root, 'src/assets/icons/folder.png');
+            fsType ="folder";
+            // 根据文件获取器文件类型进行 路由绑定便于文件读取操作
+            iconUrl = `/showImage?type=${fsType}`
           } else {
-            iconUrl = path.relative(config.root, 'src/' + mime(file)['icon']);
+            fsType = mime(file)['type'];
+            iconUrl = `/showImage?type=${fsType}`
           }
 
           return {
             file,
-            icon: iconUrl ? `/${iconUrl}` : ''
+            icon: iconUrl
           }
 
         })
@@ -85,4 +87,3 @@ module.exports = async function (req, res, filePath) {
     res.end(`${filePath} is not a directory or file`);
   }
 }
-

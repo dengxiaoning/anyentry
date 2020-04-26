@@ -1,8 +1,11 @@
 {
   "name": "anyentry",
-  "version": "1.0.0",
+  "version": "0.1.4",
   "description": "tiny nodejs web server",
-  "main": "build/index.js",
+  "main": "src/app.js",
+  "bin":{
+      "anyentry":"bin/anyentry"
+  },
   "scripts": {
     "lint": "eslint .",
     "fix": "eslint --fix ."
@@ -33,6 +36,7 @@
   },
   "dependencies": {
     "chalk": "^4.0.0",
-    "handlebars": "^4.7.6"
+    "handlebars": "^4.7.6",
+    "yargs": "^15.3.1"
   }
 }
