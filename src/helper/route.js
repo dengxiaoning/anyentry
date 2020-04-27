@@ -18,7 +18,7 @@ const tplPath = path.join(__dirname, '../template/dir.tpl');
 const source = fs.readFileSync(tplPath);
 const template = Handlebars.compile(source.toString())
 
-module.exports = async function (req, res, filePath,config,assetsCacheChild) {
+module.exports = async function (req, res, filePath,config) {
   try {
     let readFileDecodeUrl = decodeURIComponent(filePath);
     // Set it is sync reqest
@@ -61,7 +61,7 @@ module.exports = async function (req, res, filePath,config,assetsCacheChild) {
           // convert it to absolute path
           let eachUrl = path.join(filePath, file);
           let eachStat = fs.lstatSync(decodeURIComponent(eachUrl));
-          let iconUrl,absUrl,fsType;
+          let iconUrl,fsType;
           if (eachStat.isDirectory()) { // If it's folder
             fsType ="folder";
             // 根据文件获取器文件类型进行 路由绑定便于文件读取操作

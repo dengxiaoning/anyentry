@@ -1,6 +1,6 @@
 const yargs = require('yargs');
 const Server = require('./app');
-
+/* eslint-disable */
 const argv = yargs
 .usage('anyentry[options]')
 .option('p',{
@@ -22,7 +22,7 @@ const argv = yargs
 .alias('v','version')
 .help()
 .argv;
-
+/* eslint-enable */
 const server = new Server(argv);
 
 server.start();

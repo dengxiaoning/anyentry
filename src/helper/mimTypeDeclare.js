@@ -41,6 +41,11 @@ const mimeTypes = {
     "icon": "../assets/icons/ppt.png",
     "type":"ppt"
   },
+  "pptx": {
+    "text": "application/vnd.ms-powerpoint",
+    "icon": "../assets/icons/ppt.png",
+    "type":"pptx"
+  },
   "dll": {
     "text": "application/octet-stream",
     "icon": "../assets/icons/folder-config.png",
@@ -50,6 +55,11 @@ const mimeTypes = {
     "text": "application/vnd.ms-excel",
     "icon": "../assets/icons/excel.png",
     "type":"xls"
+  },
+  "xlsx": {
+    "text": "application/vnd.ms-excel",
+    "icon": "../assets/icons/excel.png",
+    "type":"xlsx"
   },
   "exe": {
     "text": "application/octet-stream",
