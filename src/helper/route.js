@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+// const iconv = require('iconv-lite');
 // add html template
 const Handlebars = require('handlebars');
 // add sync promisify
@@ -26,7 +27,7 @@ module.exports = async function (req, res, filePath,config) {
     if (stats.isFile()) {
       const contentType = mime(filePath);
 
-      res.setHeader('Content-Type', contentType['text']);
+      res.setHeader('Content-Type', contentType['text']+"; charset=utf-8");
 
       if(isFresh(stats,req,res)){
         res.statusCode = 304;
