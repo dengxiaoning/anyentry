@@ -12,14 +12,34 @@
     }
     a{
       display:block;
-      font-size:30px;
+      font-size:18px;
+	  color:#ffffff;
+	  text-decoration: none;
     }
+	a:hover{
+		text-decoration: underline;
+	}
     img{
-      width:22px;
-      height:22px;
-      line-height:22px;
+      width:18px;
+      height:18px;
+      line-height:18px;
       margin-right:6px;
     }
+	html,body {
+		-ms-overflow-style: none;
+		overflow: -moz-scrollbars-none;
+		color: #fff;
+	}
+	html::-webkit-scrollbar {
+	  width: 0 !important;
+	}
+	body::-webkit-scrollbar {
+	  width: 0 !important;
+	}
+	pre{
+		font-size: 18px;
+		color: #fff;
+	}
     </style>
 </head>
 <body>
@@ -30,8 +50,8 @@
       {{/icon}}
       {{file}}</a>
     {{/each}}
-	<div>已选目录：<span id="userSeDir">{{selectFileUrl}}</span><div>
-	
+	<div style="display: none;">已选目录：<span id="userSeDir">{{selectFileUrl}}</span><div>
+	console.log(selectFileUrl)
 	<script>
 		// 向父vue页面发送信息
         window.parent.postMessage({

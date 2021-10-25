@@ -1,8 +1,8 @@
 {
   "_from": "anyentry",
-  "_id": "anyentry@0.1.7",
+  "_id": "anyentry@0.1.9",
   "_inBundle": false,
-  "_integrity": "sha512-Fh4XtlUwUz22Cu5x0fSPZcPMHvd+segocwE944o3LIq21slCZsPQeElHk/yrVEXuRIRuCdTUUQZSZRmDBzzopg==",
+  "_integrity": "sha512-qQCSCvr/73Nar9/CKEnkc8kfvxsi5lRRt62iVz8CxAF0+60gMHOmeshns1M0sNK+Kvdu7aV93RfuGWUW2ZX8mA==",
   "_location": "/anyentry",
   "_phantomChildren": {},
   "_requested": {
@@ -16,10 +16,11 @@
     "fetchSpec": "latest"
   },
   "_requiredBy": [
-    "#USER"
+    "#USER",
+    "/"
   ],
-  "_resolved": "https://registry.npmjs.org/anyentry/-/anyentry-0.1.6.tgz",
-  "_shasum": "491155117326301ddd33b0c77c0f0dca0ab6263e",
+  "_resolved": "https://registry.npmjs.org/anyentry/-/anyentry-0.1.7.tgz",
+  "_shasum": "7fb92de877a709e0b9d1cbae6c7215601a44b349",
   "_spec": "anyentry",
   "_where": "C:\\Windows\\system32",
   "author": {
@@ -65,5 +66,5 @@
     "fix": "eslint --fix .",
     "lint": "eslint ."
   },
-  "version": "0.1.7"
+  "version": "0.1.8"
 }

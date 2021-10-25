@@ -25,7 +25,8 @@ class Server {
 
     });
 
-    server.listen(this.conf.port, this.conf.hostname, () => {
+	// 删除掉this.conf.hostname让其再localhost和ip都可以监听
+    server.listen(this.conf.port, () => {
       const addr = `http://${this.conf.hostname}:${this.conf.port}`;
       console.info(`Server started at ${chalk.green(addr)}`);
       openUrl(addr);

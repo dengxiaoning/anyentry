@@ -53,10 +53,10 @@ module.exports = async function (req, res, filePath,config) {
       // read folder from filepath
       const files = await readdir(readFileDecodeUrl);
       res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/html');
+      res.setHeader('Content-Type', 'text/html;charset=UTF-8');
       const dir = path.relative(config.root, filePath);
       const data = {	
-		  selectFileUrl:filePath,
+		  selectFileUrl:decodeURI(filePath),
         title: path.basename(filePath),
         dir: dir ? `/${dir}` : '',
         files: files.map(function(file){
@@ -85,8 +85,9 @@ module.exports = async function (req, res, filePath,config) {
   } catch (ex) {
     // console.error(ex)
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Type', 'text/html;charset=UTF-8');
     // res.end(`${filePath} is not a directory or file`);
-	res.end(filePath)
+
+	res.end(template({selectFileUrl:decodeURI(filePath)}))
   }
 }
